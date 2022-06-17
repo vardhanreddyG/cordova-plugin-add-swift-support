@@ -195,6 +195,7 @@ const getPlatformVersionsFromFileSystem = (context, projectRoot) => {
   const platformVersions = platformsOnFs.map(platform => {
     if (platform === 'ios') {
       return new Promise((resolve, reject) => {
+        const script = path.join(projectRoot, 'platforms', platform, 'cordova', 'version');
         childProcess.exec('"' + script + '"', {}, (error, stdout, _) => {
           if (error) {
             reject(error);
